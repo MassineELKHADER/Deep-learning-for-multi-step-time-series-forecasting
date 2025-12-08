@@ -7,8 +7,6 @@ In this repository, we are interested in studying deep learning techniques for m
 
 ![](https://github.com/vincent-leguen/DILATE/blob/master/fig2.png)
 
-[paper](https://papers.nips.cc/paper/8672-shape-and-time-distortion-loss-for-training-deep-time-series-forecasting-models):
-
 ```
 @incollection{leguen19dilate,
 title = {Shape and Time Distortion Loss for Training Deep Time Series Forecasting Models},
