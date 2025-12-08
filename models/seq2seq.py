@@ -54,3 +54,4 @@ class Net_GRU(nn.Module):
             decoder_input = decoder_output
             outputs[:,di:di+1,:] = decoder_output
         return outputs      
+    
