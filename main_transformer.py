@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import warnings
 import warnings; warnings.simplefilter('ignore')
 import wandb
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print('Using device:', device)
 random.seed(0)
@@ -21,7 +22,7 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 2
+epochs = 5
 # epochs = 500
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
@@ -43,15 +44,23 @@ def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
             
             if (loss_type=='mse'):
                 loss_mse = criterion(target,outputs)
-                loss = loss_mse                   
+                loss = loss_mse       
  
             if (loss_type=='dilate'):    
                 loss, loss_shape, loss_temporal = dilate_loss(target,outputs,alpha, gamma, device)             
                   
             optimizer.zero_grad()
             loss.backward()
-            optimizer.step()          
-        
+            optimizer.step()   
+
+        # ---- wandb logging ----
+        wandb.log({
+            f"{loss_type}/total_loss": loss.item(),
+            f"{loss_type}/shape_loss": loss_shape.item(),
+            f"{loss_type}/temporal_loss": loss_temporal.item(),
+            "epoch": epoch
+        })
+
         if(verbose):
             if (epoch % print_every == 0):
                 print('epoch ', epoch, ' loss ',loss.item(),' loss shape ',loss_shape.item(),' loss temporal ',loss_temporal.item())
@@ -87,7 +96,7 @@ def eval_model(net,loader, gamma,verbose=1):
             Dist = 0
             for i,j in path:
                     Dist += (i-j)*(i-j)
-            loss_tdi += Dist / (N_output*N_output)            
+            loss_tdi += Dist / (N_output*N_output)
                         
         loss_dtw = loss_dtw /batch_size
         loss_tdi = loss_tdi / batch_size
@@ -100,17 +109,17 @@ def eval_model(net,loader, gamma,verbose=1):
     print( ' Eval mse= ', np.array(losses_mse).mean() ,' dtw= ',np.array(losses_dtw).mean() ,' tdi= ', np.array(losses_tdi).mean()) 
 
 
-
 if __name__ == '__main__':
+    
     wandb.init(project="dilate-transformer-forecasting",
-           group="GRU",
-           config={
-               "batch_size": batch_size,
-               "N_input": N_input,
-               "N_output": N_output,
-               "gamma": gamma,
-               "epochs": epochs,
-           })
+            group="Transformer",
+            config={
+                "batch_size": batch_size,
+                "N_input": N_input,
+                "N_output": N_output,
+                "gamma": gamma,
+                "epochs": epochs,
+            })
 
     # Load synthetic dataset
     print('Creating synthetic dataset...')
@@ -121,17 +130,17 @@ if __name__ == '__main__':
     testloader  = DataLoader(dataset_test, batch_size=batch_size,shuffle=False, num_workers=1)
     print('Dataset created.')
 
-    encoder = EncoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1, batch_size=batch_size).to(device)
-    decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
-    net_gru_dilate = Net_GRU(encoder,decoder, N_output, device).to(device)
-    print('Training GRU with DILATE loss...')
-    train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
+    net_trans_dilate = Net_Transformer(input_size=1, target_length=N_output, d_model=128, nhead=4, num_encoder_layers=2, num_decoder_layers=2, dim_feedforward=256, device=device).to(device)
+    print('Training Transformer with DILATE loss...')
+    wandb.run.name = "Transformer_DILATE"
+    train_model(net_trans_dilate, loss_type='dilate', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
+    wandb.run.save()
 
-    encoder = EncoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1, batch_size=batch_size).to(device)
-    decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
-    net_gru_mse = Net_GRU(encoder,decoder, N_output, device).to(device)
-    print('Training GRU with MSE loss...')
-    train_model(net_gru_mse,loss_type='mse',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
+    net_trans_mse = Net_Transformer(input_size=1,target_length=N_output,d_model=128,nhead=4,num_encoder_layers=2,num_decoder_layers=2,dim_feedforward=256,device=device).to(device)
+    print("Training Transformer with MSE loss...")
+    wandb.run.name = "Transformer_MSE"
+    train_model( net_trans_mse, loss_type='mse', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
+    wandb.run.save()
 
     # Visualize results
     gen_test = iter(testloader)
@@ -141,25 +150,28 @@ if __name__ == '__main__':
     test_targets = torch.tensor(test_targets, dtype=torch.float32).to(device)
     criterion = torch.nn.MSELoss()
 
-    nets = [net_gru_mse,net_gru_dilate]
+    nets = [net_trans_mse, net_trans_dilate]
+    names = ["Transformer + MSE", "Transformer + DILATE"]
 
-    for ind in range(1,51):
-        plt.figure()
-        plt.rcParams['figure.figsize'] = (17.0,5.0)  
-        k = 1
-        for net in nets:
-            pred = net(test_inputs).to(device)
 
-            input = test_inputs.detach().cpu().numpy()[ind,:,:]
-            target = test_targets.detach().cpu().numpy()[ind,:,:]
-            preds = pred.detach().cpu().numpy()[ind,:,:]
+    for ind in range(1, 5):
+        plt.figure(figsize=(17, 5))
+        for k, net in enumerate(nets):
+            with torch.no_grad():
+                pred = net(test_inputs).to(device)
+            
+            input_seq  = test_inputs[ind].detach().cpu().numpy()
+            target_seq = test_targets[ind].detach().cpu().numpy()
+            pred_seq   = pred[ind].detach().cpu().numpy()
 
-            plt.subplot(1,3,k)
-            plt.plot(range(0,N_input) ,input,label='input',linewidth=3)
-            plt.plot(range(N_input-1,N_input+N_output), np.concatenate([ input[N_input-1:N_input], target ]) ,label='target',linewidth=3)   
-            plt.plot(range(N_input-1,N_input+N_output),  np.concatenate([ input[N_input-1:N_input], preds ])  ,label='prediction',linewidth=3)       
-            plt.xticks(range(0,40,2))
+            plt.subplot(1, len(nets), k+1)
+            plt.plot(range(N_input), input_seq, label="input", linewidth=3)
+            plt.plot(range(N_input-1, N_input+N_output),
+                    np.concatenate([input_seq[N_input-1:N_input], target_seq]),
+                    label="target", linewidth=3)
+            plt.plot(range(N_input-1, N_input+N_output),
+                    np.concatenate([input_seq[N_input-1:N_input], pred_seq]),
+                    label="prediction", linewidth=3)
+            plt.title(names[k])
             plt.legend()
-            k = k+1
-
-    plt.show()
+        plt.show()
