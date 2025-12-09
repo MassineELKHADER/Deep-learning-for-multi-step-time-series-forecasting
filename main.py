@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 import warnings
 import warnings; warnings.simplefilter('ignore')
 import wandb
+import time
+from utils import format_time
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print('Using device:', device)
 random.seed(0)
@@ -21,12 +23,13 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 2
+epochs = 3
 # epochs = 500
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
                 print_every=50,eval_every=50, verbose=1, Lambda=1, alpha=0.5):
     
+    start_time = time.time()
     optimizer = torch.optim.Adam(net.parameters(),lr=learning_rate)
     criterion = torch.nn.MSELoss()
     
@@ -50,12 +53,25 @@ def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
                   
             optimizer.zero_grad()
             loss.backward()
-            optimizer.step()          
+            optimizer.step()  
         
+        elapsed_time = time.time() - start_time        
+        # ---- wandb logging ----
+        wandb.log({
+            f"{loss_type}/total_loss": loss.item(),
+            f"{loss_type}/shape_loss": loss_shape.item(),
+            f"{loss_type}/temporal_loss": loss_temporal.item(),
+            f"{loss_type}/elapsed_time": format_time(elapsed_time),
+            "epoch": epoch
+        })
+
         if(verbose):
             if (epoch % print_every == 0):
                 print('epoch ', epoch, ' loss ',loss.item(),' loss shape ',loss_shape.item(),' loss temporal ',loss_temporal.item())
                 eval_model(net,testloader, gamma,verbose=1)
+        
+        elapsed_time = time.time() - start_time
+        return elapsed_time
   
 
 def eval_model(net,loader, gamma,verbose=1):   
@@ -104,6 +120,7 @@ def eval_model(net,loader, gamma,verbose=1):
 if __name__ == '__main__':
     wandb.init(project="dilate-transformer-forecasting",
            group="GRU",
+           name="GRU",
            config={
                "batch_size": batch_size,
                "N_input": N_input,
@@ -125,14 +142,16 @@ if __name__ == '__main__':
     decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
     net_gru_dilate = Net_GRU(encoder,decoder, N_output, device).to(device)
     print('Training GRU with DILATE loss...')
-    train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
+    time_dilate = train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
 
     encoder = EncoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1, batch_size=batch_size).to(device)
     decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
     net_gru_mse = Net_GRU(encoder,decoder, N_output, device).to(device)
     print('Training GRU with MSE loss...')
-    train_model(net_gru_mse,loss_type='mse',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
+    time_mse = train_model(net_gru_mse,loss_type='mse',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
 
+    print(f"GRU DILATE training time: {format_time(time_dilate)}")
+    print(f"GRU MSE training time:    {format_time(time_mse)}")
     # Visualize results
     gen_test = iter(testloader)
     test_inputs, test_targets, breaks = next(gen_test)
@@ -143,7 +162,7 @@ if __name__ == '__main__':
 
     nets = [net_gru_mse,net_gru_dilate]
 
-    for ind in range(1,51):
+    for ind in range(1,5):
         plt.figure()
         plt.rcParams['figure.figsize'] = (17.0,5.0)  
         k = 1
