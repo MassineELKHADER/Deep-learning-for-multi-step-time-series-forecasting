@@ -23,8 +23,8 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 5
-# epochs = 500
+# epochs = 2
+epochs = 500
 print_every = 50
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
