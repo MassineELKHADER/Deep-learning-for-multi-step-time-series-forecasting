@@ -12,6 +12,10 @@ import warnings; warnings.simplefilter('ignore')
 import wandb
 import time
 from utils import format_time
+import os
+save_dir = "Transformer/results"
+os.makedirs(save_dir, exist_ok=True)
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print('Using device:', device)
 random.seed(0)
@@ -124,6 +128,7 @@ if __name__ == '__main__':
     
     wandb.init(project="dilate-transformer-forecasting",
             group="Transformer",
+            name="Transformer_DILATE_vs_MSE",
             config={
                 "batch_size": batch_size,
                 "N_input": N_input,
@@ -143,15 +148,15 @@ if __name__ == '__main__':
 
     net_trans_dilate = Net_Transformer(input_size=1, target_length=N_output, d_model=128, nhead=4, num_encoder_layers=2, num_decoder_layers=2, dim_feedforward=256, device=device).to(device)
     print('Training Transformer with DILATE loss...')
-    wandb.run.name = "Transformer_DILATE"
     train_model(net_trans_dilate, loss_type='dilate', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
-    wandb.run.save()
+    torch.save(net_trans_dilate.state_dict(), "net_trans_dilate.pth")
+    print("Saved weights: net_trans_dilate.pth")
 
     net_trans_mse = Net_Transformer(input_size=1,target_length=N_output,d_model=128,nhead=4,num_encoder_layers=2,num_decoder_layers=2,dim_feedforward=256,device=device).to(device)
     print("Training Transformer with MSE loss...")
-    wandb.run.name = "Transformer_MSE"
     train_model( net_trans_mse, loss_type='mse', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
-    wandb.run.save()
+    torch.save(net_trans_mse.state_dict(), "net_trans_mse.pth")
+    print("Saved weights: net_trans_mse.pth")
 
     # Visualize results
     gen_test = iter(testloader)
@@ -164,9 +169,7 @@ if __name__ == '__main__':
     nets = [net_trans_mse, net_trans_dilate]
     names = ["Transformer + MSE", "Transformer + DILATE"]
 
-
     for ind in range(1, 5):
-        plt.figure(figsize=(17, 5))
         for k, net in enumerate(nets):
             with torch.no_grad():
                 pred = net(test_inputs).to(device)
@@ -175,7 +178,7 @@ if __name__ == '__main__':
             target_seq = test_targets[ind].detach().cpu().numpy()
             pred_seq   = pred[ind].detach().cpu().numpy()
 
-            plt.subplot(1, len(nets), k+1)
+            plt.figure(figsize=(17, 5))
             plt.plot(range(N_input), input_seq, label="input", linewidth=3)
             plt.plot(range(N_input-1, N_input+N_output),
                     np.concatenate([input_seq[N_input-1:N_input], target_seq]),
@@ -185,4 +188,9 @@ if __name__ == '__main__':
                     label="prediction", linewidth=3)
             plt.title(names[k])
             plt.legend()
-        plt.show()
+
+            # ---- SAVE FIGURE ----
+            filename = f"{names[k].replace(' ', '_')}_sample_{ind}.png"
+            plt.savefig(os.path.join(save_dir, filename))
+
+            plt.close()

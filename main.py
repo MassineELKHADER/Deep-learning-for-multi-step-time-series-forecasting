@@ -12,6 +12,10 @@ import warnings; warnings.simplefilter('ignore')
 import wandb
 import time
 from utils import format_time
+import os
+save_dir = "GRU/results"
+os.makedirs(save_dir, exist_ok=True)
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print('Using device:', device)
 random.seed(0)
@@ -175,23 +179,30 @@ if __name__ == '__main__':
 
     nets = [net_gru_mse,net_gru_dilate]
 
-    for ind in range(1,5):
-        plt.figure()
-        plt.rcParams['figure.figsize'] = (17.0,5.0)  
+    for ind in range(1, 5):
+        plt.figure(figsize=(17.0, 5.0))
         k = 1
         for net in nets:
-            pred = net(test_inputs).to(device)
+            with torch.no_grad():
+                pred = net(test_inputs).to(device)
 
-            input = test_inputs.detach().cpu().numpy()[ind,:,:]
-            target = test_targets.detach().cpu().numpy()[ind,:,:]
-            preds = pred.detach().cpu().numpy()[ind,:,:]
+            input  = test_inputs[ind].detach().cpu().numpy()
+            target = test_targets[ind].detach().cpu().numpy()
+            preds  = pred[ind].detach().cpu().numpy()
 
-            plt.subplot(1,3,k)
-            plt.plot(range(0,N_input) ,input,label='input',linewidth=3)
-            plt.plot(range(N_input-1,N_input+N_output), np.concatenate([ input[N_input-1:N_input], target ]) ,label='target',linewidth=3)   
-            plt.plot(range(N_input-1,N_input+N_output),  np.concatenate([ input[N_input-1:N_input], preds ])  ,label='prediction',linewidth=3)       
-            plt.xticks(range(0,40,2))
+            plt.subplot(1, 3, k)
+            plt.plot(range(0, N_input), input, label='input', linewidth=3)
+            plt.plot(range(N_input-1, N_input+N_output),
+                    np.concatenate([input[N_input-1:N_input], target]),
+                    label='target', linewidth=3)
+            plt.plot(range(N_input-1, N_input+N_output),
+                    np.concatenate([input[N_input-1:N_input], preds]),
+                    label='prediction', linewidth=3)
+            plt.xticks(range(0, 40, 2))
             plt.legend()
-            k = k+1
+            k += 1
 
-    plt.show()
+        # ---- SAVE AND CLOSE ----
+        filename = f"GRU_sample_{ind}.png"
+        plt.savefig(os.path.join(save_dir, filename))
+        plt.close()
