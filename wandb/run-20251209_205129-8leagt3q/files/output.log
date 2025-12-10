@@ -1,0 +1,9 @@
+Creating synthetic dataset...
+Dataset created.
+Training Transformer with DILATE loss...
+epoch  0  loss  4.544321537017822  loss shape  8.059616088867188  loss temporal  1.0290268659591675
+ Eval mse=  0.7938315272331238  dtw=  3.673113113507162  tdi=  0.42949000000000004
+Training Transformer with MSE loss...
+[34m[1mwandb[39m[22m: [33mWARNING[39m Calling wandb.run.save without any arguments is deprecated.Changes to attributes are automatically persisted.
+epoch  0  loss  0.6244566440582275  loss shape  0  loss temporal  0
+ Eval mse=  0.9630971074104309  dtw=  4.095748577943021  tdi=  0.37099

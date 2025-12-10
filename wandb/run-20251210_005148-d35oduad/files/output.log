@@ -1,0 +1,10 @@
+Creating synthetic dataset...
+Dataset created.
+Training GRU with DILATE loss...
+epoch  0  loss  1.5162115097045898  loss shape  2.5526881217956543  loss temporal  0.4797348976135254
+ Eval mse=  0.1429239869117737  dtw=  1.3841842711494827  tdi=  0.10408499999999998
+Training GRU with MSE loss...
+epoch  0  loss  0.15502002835273743  loss shape  0  loss temporal  0
+ Eval mse=  0.13055832535028458  dtw=  1.3123974915750518  tdi=  0.37545999999999996
+GRU DILATE training time: 0h 1m 5s
+GRU MSE training time:    0h 1m 2s

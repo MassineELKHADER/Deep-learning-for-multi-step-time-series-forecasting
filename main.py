@@ -23,8 +23,9 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 3
+epochs = 5
 # epochs = 500
+print_every = 50
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
                 print_every=50,eval_every=50, verbose=1, Lambda=1, alpha=0.5):
@@ -57,22 +58,28 @@ def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
         
         elapsed_time = time.time() - start_time        
         # ---- wandb logging ----
-        wandb.log({
-            f"{loss_type}/total_loss": loss.item(),
-            f"{loss_type}/shape_loss": loss_shape.item(),
-            f"{loss_type}/temporal_loss": loss_temporal.item(),
-            f"{loss_type}/elapsed_time": format_time(elapsed_time),
-            "epoch": epoch
-        })
+        if loss_type=='dilate':
+            wandb.log({
+                f"{loss_type}/total_loss": loss.item(),
+                f"{loss_type}/shape_loss": loss_shape.item(),
+                f"{loss_type}/temporal_loss": loss_temporal.item(),
+                f"{loss_type}/elapsed_time": elapsed_time,
+                "epoch": epoch
+            })
 
+        else:
+            wandb.log({
+                f"{loss_type}/total_loss": loss.item(),
+                f"{loss_type}/elapsed_time": elapsed_time,
+                "epoch": epoch
+            })
+            
         if(verbose):
             if (epoch % print_every == 0):
                 print('epoch ', epoch, ' loss ',loss.item(),' loss shape ',loss_shape.item(),' loss temporal ',loss_temporal.item())
                 eval_model(net,testloader, gamma,verbose=1)
-        
-        elapsed_time = time.time() - start_time
-        return elapsed_time
-  
+    total_time = time.time() - start_time
+    return total_time  
 
 def eval_model(net,loader, gamma,verbose=1):   
     criterion = torch.nn.MSELoss()
@@ -128,6 +135,8 @@ if __name__ == '__main__':
                "gamma": gamma,
                "epochs": epochs,
            })
+    wandb.define_metric("*", step_metric="epoch")
+
 
     # Load synthetic dataset
     print('Creating synthetic dataset...')
@@ -142,13 +151,17 @@ if __name__ == '__main__':
     decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
     net_gru_dilate = Net_GRU(encoder,decoder, N_output, device).to(device)
     print('Training GRU with DILATE loss...')
-    time_dilate = train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
+    time_dilate = train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=print_every, eval_every=50,verbose=1)
+    torch.save(net_gru_dilate.state_dict(), "gru_dilate.pth")
+    print("Saved weights: gru_dilate.pth")
 
     encoder = EncoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1, batch_size=batch_size).to(device)
     decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
     net_gru_mse = Net_GRU(encoder,decoder, N_output, device).to(device)
     print('Training GRU with MSE loss...')
-    time_mse = train_model(net_gru_mse,loss_type='mse',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50,verbose=1)
+    time_mse = train_model(net_gru_mse,loss_type='mse',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=print_every, eval_every=50,verbose=1)
+    torch.save(net_gru_mse.state_dict(), "gru_mse.pth")
+    print("Saved weights: gru_mse.pth")
 
     print(f"GRU DILATE training time: {format_time(time_dilate)}")
     print(f"GRU MSE training time:    {format_time(time_mse)}")
