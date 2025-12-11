@@ -13,6 +13,8 @@ import wandb
 import time
 from utils import format_time
 import os
+import pickle
+
 save_dir = "GRU/results"
 os.makedirs(save_dir, exist_ok=True)
 
@@ -27,8 +29,8 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-# epochs = 2
-epochs = 500
+epochs = 2
+# epochs = 500
 print_every = 50
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
@@ -143,13 +145,14 @@ if __name__ == '__main__':
 
 
     # Load synthetic dataset
-    print('Creating synthetic dataset...')
-    X_train_input,X_train_target,X_test_input,X_test_target,train_bkp,test_bkp = create_synthetic_dataset(N,N_input,N_output,sigma)
-    dataset_train = SyntheticDataset(X_train_input,X_train_target, train_bkp)
-    dataset_test  = SyntheticDataset(X_test_input,X_test_target, test_bkp)
-    trainloader = DataLoader(dataset_train, batch_size=batch_size,shuffle=True, num_workers=1)
-    testloader  = DataLoader(dataset_test, batch_size=batch_size,shuffle=False, num_workers=1)
-    print('Dataset created.')
+    with open("synthetic_dataset.pkl", "rb") as f:
+        X_train_input, X_train_target, X_test_input, X_test_target, train_bkp, test_bkp = pickle.load(f)
+
+    dataset_train = SyntheticDataset(X_train_input, X_train_target, train_bkp)
+    dataset_test  = SyntheticDataset(X_test_input, X_test_target, test_bkp)
+
+    trainloader = DataLoader(dataset_train, batch_size=batch_size, shuffle=True)
+    testloader = DataLoader(dataset_test, batch_size=batch_size, shuffle=False)
 
     encoder = EncoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1, batch_size=batch_size).to(device)
     decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
@@ -178,31 +181,52 @@ if __name__ == '__main__':
     criterion = torch.nn.MSELoss()
 
     nets = [net_gru_mse,net_gru_dilate]
-
+    names = ['GRU-MSE','GRU-DILATE']
     for ind in range(1, 5):
+
+        # ---- Compute predictions for BOTH nets once ----
+        with torch.no_grad():
+            preds_list = [net(test_inputs).to(device) for net in nets]
+
+        # Extract true input + target
+        input_seq  = test_inputs[ind].detach().cpu().numpy()
+        target_seq = test_targets[ind].detach().cpu().numpy()
+
         plt.figure(figsize=(17.0, 5.0))
-        k = 1
-        for net in nets:
-            with torch.no_grad():
-                pred = net(test_inputs).to(device)
 
-            input  = test_inputs[ind].detach().cpu().numpy()
-            target = test_targets[ind].detach().cpu().numpy()
-            preds  = pred[ind].detach().cpu().numpy()
+        # 1) Plot INPUT
+        plt.plot(
+            range(0, N_input),
+            input_seq,
+            label="input",
+            linewidth=3
+        )
 
-            plt.subplot(1, 3, k)
-            plt.plot(range(0, N_input), input, label='input', linewidth=3)
-            plt.plot(range(N_input-1, N_input+N_output),
-                    np.concatenate([input[N_input-1:N_input], target]),
-                    label='target', linewidth=3)
-            plt.plot(range(N_input-1, N_input+N_output),
-                    np.concatenate([input[N_input-1:N_input], preds]),
-                    label='prediction', linewidth=3)
-            plt.xticks(range(0, 40, 2))
-            plt.legend()
-            k += 1
+        # 2) Plot TARGET
+        plt.plot(
+            range(N_input-1, N_input+N_output),
+            np.concatenate([input_seq[N_input-1:N_input], target_seq]),
+            label="target",
+            linewidth=3,
+            color="black"
+        )
 
-        # ---- SAVE AND CLOSE ----
+        # 3) Plot BOTH PREDICTIONS (MSE + DILATE)
+        for preds, name in zip(preds_list, names):
+
+            pred_seq = preds[ind].detach().cpu().numpy()
+
+            plt.plot(
+                range(N_input-1, N_input+N_output),
+                np.concatenate([input_seq[N_input-1:N_input], pred_seq]),
+                label=f"prediction ({name})",
+                linewidth=3,
+            )
+
+        plt.title(f"Sample {ind}: GRU — MSE vs DILATE")
+        plt.legend()
+
+        # ---- SAVE FIGURE ----
         filename = f"GRU_sample_{ind}.png"
         plt.savefig(os.path.join(save_dir, filename))
         plt.close()

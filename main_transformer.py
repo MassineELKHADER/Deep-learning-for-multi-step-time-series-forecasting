@@ -13,7 +13,9 @@ import wandb
 import time
 from utils import format_time
 import os
-save_dir = "Transformer/results"
+import pickle
+
+save_dir = "results/Transformer"
 os.makedirs(save_dir, exist_ok=True)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -137,14 +139,14 @@ if __name__ == '__main__':
                 "epochs": epochs,
             })
 
-    # Load synthetic dataset
-    print('Creating synthetic dataset...')
-    X_train_input,X_train_target,X_test_input,X_test_target,train_bkp,test_bkp = create_synthetic_dataset(N,N_input,N_output,sigma)
-    dataset_train = SyntheticDataset(X_train_input,X_train_target, train_bkp)
-    dataset_test  = SyntheticDataset(X_test_input,X_test_target, test_bkp)
-    trainloader = DataLoader(dataset_train, batch_size=batch_size,shuffle=True, num_workers=1)
-    testloader  = DataLoader(dataset_test, batch_size=batch_size,shuffle=False, num_workers=1)
-    print('Dataset created.')
+    with open("synthetic_dataset.pkl", "rb") as f:
+        X_train_input, X_train_target, X_test_input, X_test_target, train_bkp, test_bkp = pickle.load(f)
+
+    dataset_train = SyntheticDataset(X_train_input, X_train_target, train_bkp)
+    dataset_test  = SyntheticDataset(X_test_input, X_test_target, test_bkp)
+
+    trainloader = DataLoader(dataset_train, batch_size=batch_size, shuffle=True)
+    testloader = DataLoader(dataset_test, batch_size=batch_size, shuffle=False)
 
     net_trans_dilate = Net_Transformer(input_size=1, target_length=N_output, d_model=128, nhead=4, num_encoder_layers=2, num_decoder_layers=2, dim_feedforward=256, device=device).to(device)
     print('Training Transformer with DILATE loss...')
@@ -169,28 +171,42 @@ if __name__ == '__main__':
     nets = [net_trans_mse, net_trans_dilate]
     names = ["Transformer + MSE", "Transformer + DILATE"]
 
+
     for ind in range(1, 5):
-        for k, net in enumerate(nets):
-            with torch.no_grad():
-                pred = net(test_inputs).to(device)
-            
-            input_seq  = test_inputs[ind].detach().cpu().numpy()
-            target_seq = test_targets[ind].detach().cpu().numpy()
-            pred_seq   = pred[ind].detach().cpu().numpy()
+        with torch.no_grad():
+            preds = [net(test_inputs).to(device) for net in nets]
 
-            plt.figure(figsize=(17, 5))
-            plt.plot(range(N_input), input_seq, label="input", linewidth=3)
-            plt.plot(range(N_input-1, N_input+N_output),
-                    np.concatenate([input_seq[N_input-1:N_input], target_seq]),
-                    label="target", linewidth=3)
-            plt.plot(range(N_input-1, N_input+N_output),
-                    np.concatenate([input_seq[N_input-1:N_input], pred_seq]),
-                    label="prediction", linewidth=3)
-            plt.title(names[k])
-            plt.legend()
+        input_seq  = test_inputs[ind].detach().cpu().numpy()
+        target_seq = test_targets[ind].detach().cpu().numpy()
 
-            # ---- SAVE FIGURE ----
-            filename = f"{names[k].replace(' ', '_')}_sample_{ind}.png"
-            plt.savefig(os.path.join(save_dir, filename))
+        plt.figure(figsize=(17, 5))
 
-            plt.close()
+        # ---- Plot input and target once ----
+        plt.plot(range(N_input),
+                input_seq,
+                label="input",
+                linewidth=3)
+
+        plt.plot(range(N_input-1, N_input+N_output),
+                np.concatenate([input_seq[N_input-1:N_input], target_seq]),
+                label="target",
+                linewidth=3,
+                color="black")
+
+        # ---- Plot predictions from both models ----
+        for pred, name in zip(preds, names):
+            pred_seq = pred[ind].detach().cpu().numpy()
+            plt.plot(
+                range(N_input-1, N_input+N_output),
+                np.concatenate([input_seq[N_input-1:N_input], pred_seq]),
+                label=f"prediction ({name})",
+                linewidth=3,
+            )
+
+        plt.title(f"Sample {ind}: MSE vs DILATE on Transformer")
+        plt.legend()
+
+        # ---- Save ----
+        filename = f"Transformer_sample_{ind}.png"
+        plt.savefig(os.path.join(save_dir, filename))
+        plt.close()

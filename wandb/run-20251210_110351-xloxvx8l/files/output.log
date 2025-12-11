@@ -1,0 +1,10 @@
+Creating synthetic dataset...
+Dataset created.
+Training Transformer with DILATE loss...
+epoch  0  loss  10.69408130645752  loss shape  20.84065818786621  loss temporal  0.5475035309791565
+ Eval mse=  0.8625362515449524  dtw=  3.8508992240998268  tdi=  0.49462
+Saved weights: net_trans_dilate.pth
+Training Transformer with MSE loss...
+epoch  0  loss  0.745589017868042  loss shape  0  loss temporal  0
+ Eval mse=  1.1679381132125854  dtw=  4.550236772465485  tdi=  0.25410000000000005
+Saved weights: net_trans_mse.pth
