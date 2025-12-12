@@ -11,7 +11,7 @@ from utils import format_time
 batch_size = 100
 gamma_grid = [0.001, 0.01, 1]
 alpha = 0.5
-epochs = 5
+epochs = 2
 
 # Load the synthetic dataset (same split as training)
 with open("synthetic_dataset.pkl", "rb") as f:
@@ -33,6 +33,7 @@ for gamma in gamma_grid:
     encoder = EncoderRNN(1, 128, 1, batch_size=100).to(device)
     decoder = DecoderRNN(1, 128, 1, 16, 1).to(device)
     net = Net_GRU(encoder, decoder, target_length=20, device=device).to(device)
+    t0 = time.time()
 
     train_model(
         trainloader, 
@@ -44,11 +45,10 @@ for gamma in gamma_grid:
         alpha=alpha,
         epochs=epochs,
     )
-
     metrics = evaluate_metrics(net, testloader, device)
     metrics["gamma"] = gamma
     results.append(metrics)
-    print("Runtime : ", format_time(time.time() - start_time))
+    print("Runtime : ", format_time(time.time() - t0))
 
 with open("sensitivity/gamma/results_gamma.pkl", "wb") as f:
     pickle.dump(results, f)

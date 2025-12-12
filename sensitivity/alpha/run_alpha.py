@@ -11,8 +11,8 @@ from utils import format_time
 batch_size = 100
 alpha_grid = [0.0, 0.25, 0.5, 0.75, 1.0]
 gamma = 0.01
-# epochs = 250
-epochs = 5
+epochs = 250
+# epochs = 2
 
 # Load the synthetic dataset (same split as training)
 with open("synthetic_dataset.pkl", "rb") as f:
@@ -34,7 +34,7 @@ for alpha in alpha_grid:
     encoder = EncoderRNN(1, 128, 1, batch_size=100).to(device)
     decoder = DecoderRNN(1, 128, 1, 16, 1).to(device)
     net = Net_GRU(encoder, decoder, target_length=20, device=device).to(device)
-    
+    t0 = time.time()
     train_model(
         trainloader, 
         device,
@@ -49,7 +49,7 @@ for alpha in alpha_grid:
     metrics = evaluate_metrics(net, testloader, device)
     metrics["alpha"] = alpha
     results.append(metrics)
-    print("Runtime : ", format_time(time.time() - start_time))
+    print("Runtime : ", format_time(time.time() - t0))
 
 with open("sensitivity/alpha/results_alpha.pkl", "wb") as f:
     pickle.dump(results, f)

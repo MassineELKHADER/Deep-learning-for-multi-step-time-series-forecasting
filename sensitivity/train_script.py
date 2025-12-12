@@ -1,6 +1,6 @@
 import torch
 from loss.dilate_loss import dilate_loss
-
+from tqdm import tqdm
 def train_model(
     trainloader,
     device,
@@ -14,8 +14,18 @@ def train_model(
     optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
 
     net.train()
-    for _ in range(epochs):
-        for inputs, targets, _ in trainloader:
+    epoch_bar = tqdm(range(epochs), desc="Epochs", position=0)
+
+    for epoch in epoch_bar:
+        batch_bar = tqdm(
+            trainloader,
+            desc=f"Epoch {epoch+1}/{epochs}",
+            leave=False,
+            position=1,
+        )
+        running_loss = 0.0
+
+        for inputs, targets, _ in batch_bar:
             inputs = inputs.float().to(device)
             targets = targets.float().to(device)
 
@@ -30,5 +40,10 @@ def train_model(
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            running_loss += loss.item()
+            batch_bar.set_postfix(loss=loss.item())
+
+        epoch_bar.set_postfix(avg_loss=running_loss / len(trainloader))
+
 
     return net
