@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 from torch.utils.data import DataLoader
 from tslearn.metrics import dtw_path
-
+from loss.dilate_loss import dilate_loss
 from data.synthetic_dataset import SyntheticDataset
 from models.seq2seq import EncoderRNN, DecoderRNN, Net_GRU
 
@@ -66,8 +66,8 @@ tdi_list = []
 
 with torch.no_grad():
     for inputs, targets, _ in testloader:
-        inputs = torch.tensor(inputs, dtype=torch.float32).to(device)
-        targets = torch.tensor(targets, dtype=torch.float32).to(device)
+        inputs = inputs.to(device).float()
+        targets = targets.to(device).float()
 
         outputs = net(inputs)
 
