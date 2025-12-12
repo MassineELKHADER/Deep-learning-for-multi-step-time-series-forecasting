@@ -1,0 +1,9 @@
+
+Training Transformer with DILATE loss...
+epoch  0  loss  6.330749034881592  loss shape  11.151695251464844  loss temporal  1.5098024606704712
+ Eval mse=  0.7686357140541077  dtw=  3.54991854082473  tdi=  0.9641299999999999
+Saved weights to: weights/transformer\net_trans_dilate_10.pth
+Training Transformer with MSE loss...
+epoch  0  loss  0.9610314965248108  loss shape  0  loss temporal  0
+ Eval mse=  0.9669746518135071  dtw=  4.09559799132897  tdi=  0.34655500000000006
+Saved weights to: weights/transformer\net_trans_mse_10.pth

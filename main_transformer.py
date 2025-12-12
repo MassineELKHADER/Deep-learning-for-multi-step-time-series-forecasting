@@ -17,6 +17,8 @@ import pickle
 
 save_dir = "results/Transformer"
 os.makedirs(save_dir, exist_ok=True)
+weights_dir = "weights/transformer"
+os.makedirs(weights_dir, exist_ok=True)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print('Using device:', device)
@@ -29,8 +31,8 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 5
-# epochs = 500
+# epochs = 1
+epochs = 500
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
                 print_every=50,eval_every=50, verbose=1, Lambda=1, alpha=0.5):
@@ -151,14 +153,16 @@ if __name__ == '__main__':
     net_trans_dilate = Net_Transformer(input_size=1, target_length=N_output, d_model=128, nhead=4, num_encoder_layers=2, num_decoder_layers=2, dim_feedforward=256, device=device).to(device)
     print('Training Transformer with DILATE loss...')
     train_model(net_trans_dilate, loss_type='dilate', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
-    torch.save(net_trans_dilate.state_dict(), "net_trans_dilate.pth")
-    print("Saved weights: net_trans_dilate.pth")
+    save_path = os.path.join(weights_dir, f"net_trans_dilate_{epochs}.pth")
+    torch.save(net_trans_dilate.state_dict(), save_path)
+    print(f"Saved weights to: {save_path}")
 
     net_trans_mse = Net_Transformer(input_size=1,target_length=N_output,d_model=128,nhead=4,num_encoder_layers=2,num_decoder_layers=2,dim_feedforward=256,device=device).to(device)
     print("Training Transformer with MSE loss...")
     train_model( net_trans_mse, loss_type='mse', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
-    torch.save(net_trans_mse.state_dict(), "net_trans_mse.pth")
-    print("Saved weights: net_trans_mse.pth")
+    save_path = os.path.join(weights_dir, f"net_trans_mse_{epochs}.pth")
+    torch.save(net_trans_mse.state_dict(), save_path)
+    print(f"Saved weights to: {save_path}")
 
     # Visualize results
     gen_test = iter(testloader)
@@ -172,7 +176,7 @@ if __name__ == '__main__':
     names = ["Transformer + MSE", "Transformer + DILATE"]
 
 
-    for ind in range(1, 5):
+    for ind in range(1, 10):
         with torch.no_grad():
             preds = [net(test_inputs).to(device) for net in nets]
 

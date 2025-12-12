@@ -1,0 +1,1 @@
+{"dilate/total_loss": 1.6312386989593506, "dilate/shape_loss": 2.6909098625183105, "dilate/temporal_loss": 0.5715676546096802, "dilate/elapsed_time": 39.3266327381134, "epoch": 9, "_timestamp": 1765412697.8338268, "_runtime": 50.24475073814392, "_step": 19, "mse/total_loss": 0.0995393693447113, "mse/elapsed_time": 9.011598110198975, "_wandb": {"runtime": 52}}

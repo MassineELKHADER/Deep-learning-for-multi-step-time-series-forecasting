@@ -1,0 +1,31 @@
+Creating synthetic dataset...
+Dataset created.
+Training Transformer with DILATE loss...
+epoch  0  loss  5.686679840087891  loss shape  10.349461555480957  loss temporal  1.0238984823226929
+ Eval mse=  0.7866037130355835  dtw=  3.5855308362394767  tdi=  0.6897899999999998
+Training Transformer with MSE loss...
+[34m[1mwandb[39m[22m: [33mWARNING[39m Calling wandb.run.save without any arguments is deprecated.Changes to attributes are automatically persisted.
+Traceback (most recent call last):
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 141, in <module>
+    train_model( net_trans_mse, loss_type='mse', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 63, in train_model
+    loss.backward()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 141, in <module>
+    train_model( net_trans_mse, loss_type='mse', learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=50, eval_every=50, verbose=1)
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 63, in train_model
+    loss.backward()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

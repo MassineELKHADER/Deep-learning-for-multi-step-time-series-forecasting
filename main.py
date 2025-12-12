@@ -15,8 +15,10 @@ from utils import format_time
 import os
 import pickle
 
-save_dir = "GRU/results"
+save_dir = "results/GRU"
 os.makedirs(save_dir, exist_ok=True)
+gru_weights_dir = "weights/gru"
+os.makedirs(gru_weights_dir, exist_ok=True)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print('Using device:', device)
@@ -29,8 +31,8 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 2
-# epochs = 500
+# epochs = 1
+epochs = 500
 print_every = 50
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
@@ -159,16 +161,20 @@ if __name__ == '__main__':
     net_gru_dilate = Net_GRU(encoder,decoder, N_output, device).to(device)
     print('Training GRU with DILATE loss...')
     time_dilate = train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=print_every, eval_every=50,verbose=1)
-    torch.save(net_gru_dilate.state_dict(), "gru_dilate.pth")
-    print("Saved weights: gru_dilate.pth")
+
+    save_path = os.path.join(gru_weights_dir, f"gru_dilate_{epochs}.pth")
+    torch.save(net_gru_dilate.state_dict(), save_path)
+    print(f"Saved weights: {save_path}")
 
     encoder = EncoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1, batch_size=batch_size).to(device)
     decoder = DecoderRNN(input_size=1, hidden_size=128, num_grulstm_layers=1,fc_units=16, output_size=1).to(device)
     net_gru_mse = Net_GRU(encoder,decoder, N_output, device).to(device)
     print('Training GRU with MSE loss...')
     time_mse = train_model(net_gru_mse,loss_type='mse',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=print_every, eval_every=50,verbose=1)
-    torch.save(net_gru_mse.state_dict(), "gru_mse.pth")
-    print("Saved weights: gru_mse.pth")
+
+    save_path = os.path.join(gru_weights_dir, f"gru_mse_{epochs}.pth")
+    torch.save(net_gru_mse.state_dict(), save_path)
+    print(f"Saved weights: {save_path}")
 
     print(f"GRU DILATE training time: {format_time(time_dilate)}")
     print(f"GRU MSE training time:    {format_time(time_mse)}")
@@ -182,7 +188,7 @@ if __name__ == '__main__':
 
     nets = [net_gru_mse,net_gru_dilate]
     names = ['GRU-MSE','GRU-DILATE']
-    for ind in range(1, 5):
+    for ind in range(1, 10):
 
         # ---- Compute predictions for BOTH nets once ----
         with torch.no_grad():
