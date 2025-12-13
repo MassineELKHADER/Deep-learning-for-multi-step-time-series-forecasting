@@ -31,7 +31,7 @@ def train_model(
             targets = targets.float().to(device)
 
             outputs = net(inputs)
-            print(outputs.shape, targets.shape)
+            # print(outputs.shape, targets.shape)
             if (loss_type=='mse'):
                 criterion = torch.nn.MSELoss()
                 loss = criterion(outputs, targets)

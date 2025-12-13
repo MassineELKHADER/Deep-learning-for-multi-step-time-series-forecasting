@@ -20,16 +20,22 @@ def evaluate_metrics(net, loader, device):
 
             B, T, _ = outputs.shape
             for k in range(B):
-                y = targets[k,:,0].cpu().numpy()
-                yhat = outputs[k,:,0].cpu().numpy()
+                y = targets[k, :, 0].cpu().numpy()
+                yhat = outputs[k, :, 0].cpu().numpy()
 
                 path, dist = dtw_path(y, yhat)
                 dtw_list.append(dist)
 
-                tdi = sum((i-j)**2 for i,j in path) / (T*T)
+                tdi = sum((i - j) ** 2 for i, j in path) / (T * T)
                 tdi_list.append(tdi)
 
     return {
+        # ---- per-run values (REQUIRED for Student t-test) ----
+        "mse": mse_list,
+        "dtw": dtw_list,
+        "tdi": tdi_list,
+
+        # ---- aggregated statistics (unchanged) ----
         "mse_mean": np.mean(mse_list),
         "mse_std":  np.std(mse_list),
 
@@ -39,6 +45,7 @@ def evaluate_metrics(net, loader, device):
         "tdi_mean": np.mean(tdi_list),
         "tdi_std":  np.std(tdi_list),
     }
+
 
 def plot_sensitivity(
     results_path,
@@ -67,7 +74,8 @@ def plot_sensitivity(
 
     plt.errorbar(x, mse_mean, yerr=mse_std, marker="o", capsize=3, label="MSE")
     plt.errorbar(x, dtw_mean, yerr=dtw_std, marker="s", capsize=3, label="DTW")
-    plt.errorbar(x, tdi_mean, yerr=tdi_std, marker="^", capsize=3, label="TDI")
+    if not Omega:
+        plt.errorbar(x, tdi_mean, yerr=tdi_std, marker="^", capsize=3, label="TDI")
 
     if log_x:
         plt.xscale("log")

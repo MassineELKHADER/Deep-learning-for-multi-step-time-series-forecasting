@@ -14,8 +14,8 @@ Omega_to_id = {name: i for i, name in enumerate(Omega_choices)}
 
 alpha = 0.5
 gamma = 0.01
-# epochs = 250
-epochs = 2
+epochs = 250
+# epochs = 2
 
 # Load the synthetic dataset (same split as training)
 with open("synthetic_dataset.pkl", "rb") as f:
@@ -55,14 +55,14 @@ for Omega in Omega_choices:
     results.append(metrics)
     print("Runtime : ", format_time(time.time() - t0))
 
-with open("sensitivity/Omega/results_Omega_resr.pkl", "wb") as f:
+with open("sensitivity/Omega/results_Omega.pkl", "wb") as f:
     pickle.dump(results, f)
 
 plot_sensitivity(
-    results_path="sensitivity/Omega/results_Omega_test.pkl",
+    results_path="sensitivity/Omega/results_Omega.pkl",
     x_key="Omega_id",
     x_label="Omega choice", 
-    save_path="sensitivity/Omega/Omega_sensitivity_test.png",
+    save_path="sensitivity/Omega/Omega_sensitivity.png",
     title="DILATE Sensitivity to Omega (Shape vs Temporal Trade-off)",
     log_x=False,
     Omega=True
