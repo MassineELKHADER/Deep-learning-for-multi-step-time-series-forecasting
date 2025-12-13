@@ -128,6 +128,12 @@ def eval_model(net,loader, gamma,verbose=1):
         losses_dtw.append( loss_dtw )
         losses_tdi.append( loss_tdi )
 
+    wandb.log({
+        "eval/mse": np.array(losses_mse).mean(),
+        "eval/dtw": np.array(losses_dtw).mean(),
+        "eval/tdi": np.array(losses_tdi).mean(),
+    })
+
     print( ' Eval mse= ', np.array(losses_mse).mean() ,' dtw= ',np.array(losses_dtw).mean() ,' tdi= ', np.array(losses_tdi).mean()) 
 
 

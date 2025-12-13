@@ -17,17 +17,17 @@ def dilate_loss(outputs, targets, alpha, gamma, device):
 	path = path_dtw(D,gamma)  
 
 	## Choice of temporal penalty matrix Omega         
-	# Omega =  soft_dtw.pairwise_distances(torch.range(1,N_output).view(N_output,1)).to(device)
+	Omega =  soft_dtw.pairwise_distances(torch.range(1,N_output).view(N_output,1)).to(device)
 	
 
 	t = torch.arange(1, N_output+1).float().view(-1,1).to(device)
 	# asymmetric temporal penalty (late >> early)
-	Omega = soft_dtw.pairwise_temporal_asymmetric(
-				t_true=t,
-				t_pred=t,
-				late_weight=3.0,
-				early_weight=1.0,
-			)
+	# Omega = soft_dtw.pairwise_temporal_asymmetric(
+	# 			t_true=t,
+	# 			t_pred=t,
+	# 			late_weight=3.0,
+	# 			early_weight=1.0,
+	# 		)
 
 
 	loss_temporal =  torch.sum( path*Omega ) / (N_output*N_output) 

@@ -1,0 +1,7 @@
+{
+    "d_model": 64,
+    "nhead": 4,
+    "dim_feedforward": 128,
+    "learning_rate": 0.0003401623873543235,
+    "best_dtw": 0.6661358713605386
+}

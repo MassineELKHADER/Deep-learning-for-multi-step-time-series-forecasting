@@ -10,7 +10,7 @@ import pickle
 import time
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-epochs = 5
+epochs = 30
 # -----------------------
 # Load dataset
 # -----------------------
@@ -158,3 +158,16 @@ with open("best_transformer_params.json", "w") as f:
     json.dump(best_params, f, indent=4)
 
 print("\nSaved best hyperparameters to best_transformer_params.json")
+
+
+# === Optuna study finished ===
+# Total time: 17.14 minutes
+# Average time per trial: 51.43 seconds
+
+# === Best hyperparameters ===
+# DTW score : 0.6661
+# d_model   : 64
+# nhead     : 4
+# ff_mult   : 2
+# dim_ff    : 128
+# lr        : 3.40e-04
