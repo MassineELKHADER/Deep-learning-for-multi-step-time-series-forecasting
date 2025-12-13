@@ -40,6 +40,7 @@ def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
     
     start_time = time.time()
     optimizer = torch.optim.Adam(net.parameters(),lr=learning_rate)
+    
     criterion = torch.nn.MSELoss()
     
     for epoch in range(epochs): 

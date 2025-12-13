@@ -9,9 +9,13 @@ from data.synthetic_dataset import SyntheticDataset
 import time
 from utils import format_time
 batch_size = 100
-gamma_grid = [0.001, 0.01, 1]
+Omega_choices = ["l2", "l1", "asymmetric", "huber"]
+Omega_to_id = {name: i for i, name in enumerate(Omega_choices)}
+
 alpha = 0.5
-epochs = 250
+gamma = 0.01
+# epochs = 250
+epochs = 2
 
 # Load the synthetic dataset (same split as training)
 with open("synthetic_dataset.pkl", "rb") as f:
@@ -26,15 +30,14 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 results = []
-start_time = time.time()
-for gamma in gamma_grid:
-    print(f"\n=== Gamma = {gamma} ===")
+
+for Omega in Omega_choices:
+    print(f"\n=== Omega = {Omega} ===")
 
     encoder = EncoderRNN(1, 128, 1, batch_size=100).to(device)
     decoder = DecoderRNN(1, 128, 1, 16, 1).to(device)
     net = Net_GRU(encoder, decoder, target_length=20, device=device).to(device)
     t0 = time.time()
-
     train_model(
         trainloader, 
         device,
@@ -44,20 +47,23 @@ for gamma in gamma_grid:
         gamma=gamma,
         alpha=alpha,
         epochs=epochs,
+        Omega=Omega,
     )
+
     metrics = evaluate_metrics(net, testloader, device)
-    metrics["gamma"] = gamma
+    metrics["Omega_id"] = Omega_to_id[Omega]
     results.append(metrics)
     print("Runtime : ", format_time(time.time() - t0))
 
-with open("sensitivity/gamma/results_gamma.pkl", "wb") as f:
+with open("sensitivity/Omega/results_Omega_resr.pkl", "wb") as f:
     pickle.dump(results, f)
 
 plot_sensitivity(
-    results_path="sensitivity/gamma/results_gamma.pkl",
-    x_key="gamma",
-    save_path="sensitivity/gamma/gamma_sensitivity.png",
-    title="DILATE Sensitivity to gamma (Soft-DTW smoothness)",
-    x_label="gamma (Soft-DTW smoothing)",
-    log_x=True
+    results_path="sensitivity/Omega/results_Omega_test.pkl",
+    x_key="Omega_id",
+    x_label="Omega choice", 
+    save_path="sensitivity/Omega/Omega_sensitivity_test.png",
+    title="DILATE Sensitivity to Omega (Shape vs Temporal Trade-off)",
+    log_x=False,
+    Omega=True
 )
