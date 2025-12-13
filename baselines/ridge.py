@@ -42,40 +42,50 @@ def to_targets(X_target):
 
 def eval_metrics_numpy(y_true, y_pred, gamma=0.01, alpha=0.5, device="cpu"):
     """
-    y_true, y_pred: (N, N_output) numpy arrays
-    returns dict: MSE, Huber, DTW, TDI, DILATE
+    y_true, y_pred: (N, N_output)
+    returns dict with mean and std for each metric
     """
     N, N_output = y_true.shape
 
-    # --- MSE ---
-    mse = np.mean((y_pred - y_true) ** 2)
+    # --- Per-sample MSE ---
+    mse_i = np.mean((y_pred - y_true) ** 2, axis=1)
 
-    # --- Huber (delta=1.0) ---
+    # --- Per-sample Huber ---
     delta = 1.0
     r = y_pred - y_true
     abs_r = np.abs(r)
-    huber = np.mean(np.where(abs_r <= delta, 0.5 * r**2, delta * (abs_r - 0.5 * delta)))
+    huber_i = np.mean(
+        np.where(abs_r <= delta, 0.5 * r**2, delta * (abs_r - 0.5 * delta)),
+        axis=1,
+    )
 
     # --- DTW + TDI ---
-    dtw_vals = []
-    tdi_vals = []
+    dtw_i = []
+    tdi_i = []
     for i in range(N):
         path, dtw_val = dtw_path(y_true[i], y_pred[i])
-        dtw_vals.append(dtw_val)
+        dtw_i.append(dtw_val)
         tdi = sum((a - b) ** 2 for a, b in path) / (N_output * N_output)
-        tdi_vals.append(tdi)
+        tdi_i.append(tdi)
 
-    # --- DILATE (use your torch implementation) ---
+    dtw_i = np.array(dtw_i)
+    tdi_i = np.array(tdi_i)
+
+    # --- DILATE (per-sample) ---
     yt = torch.tensor(y_true[:, :, None], dtype=torch.float32, device=device)
     yp = torch.tensor(y_pred[:, :, None], dtype=torch.float32, device=device)
-    dil, _, _ = dilate_loss(yt, yp, alpha=alpha, gamma=gamma, device=device)
+    dil_i, _, _ = dilate_loss(yt, yp, alpha=alpha, gamma=gamma, device=device)
+    dil_i = dil_i.detach().cpu().numpy()
+
+    def mean_std(x):
+        return float(np.mean(x)), float(np.std(x))
 
     return {
-        "MSE": float(mse),
-        "Huber": float(huber),
-        "DTW": float(np.mean(dtw_vals)),
-        "TDI": float(np.mean(tdi_vals)),
-        "DILATE": float(dil.item()),
+        "MSE": mean_std(mse_i),
+        "Huber": mean_std(huber_i),
+        "DTW": mean_std(dtw_i),
+        "TDI": mean_std(tdi_i),
+        "DILATE": mean_std(dil_i),
     }
 
 def save_input_pred_gt(X_input, Y_true, Y_pred, idx, save_dir):
@@ -181,8 +191,8 @@ if __name__ == "__main__":
     metrics = eval_metrics_numpy(Yte, Ypred, gamma=gamma, alpha=alpha, device=device)
 
     print("\n=== Ridge multi-output (test metrics) ===")
-    for k, v in metrics.items():
-        print(f"{k:7s}: {v:.4f}")
+    for k, (m, s) in metrics.items():
+        print(f"{k:7s}: {m:.4f} ± {s:.4f}")
 
     # -----------------------
     # Sanity-check plots

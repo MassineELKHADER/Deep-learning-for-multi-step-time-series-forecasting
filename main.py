@@ -84,58 +84,63 @@ def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
             })
             
         if(verbose):
-            if (epoch % print_every == 0):
+            if (epoch % print_every == 0) or (epoch==epochs-1):
                 print('epoch ', epoch, ' loss ',loss.item(),' loss shape ',loss_shape.item(),' loss temporal ',loss_temporal.item())
                 eval_model(net,testloader, gamma,verbose=1)
     total_time = time.time() - start_time
     return total_time  
 
 def eval_model(net,loader, gamma,verbose=1):   
-    criterion = torch.nn.MSELoss()
-    losses_mse = []
-    losses_dtw = []
-    losses_tdi = []   
+    net.eval()
 
-    for i, data in enumerate(loader, 0):
-        loss_mse, loss_dtw, loss_tdi = torch.tensor(0),torch.tensor(0),torch.tensor(0)
-        # get the inputs
-        inputs, target, breakpoints = data
-        inputs = torch.tensor(inputs, dtype=torch.float32).to(device)
-        target = torch.tensor(target, dtype=torch.float32).to(device)
-        batch_size, N_output = target.shape[0:2]
-        outputs = net(inputs)
-         
-        # MSE    
-        loss_mse = criterion(target,outputs)    
-        loss_dtw, loss_tdi = 0,0
-        # DTW and TDI
-        for k in range(batch_size):         
-            target_k_cpu = target[k,:,0:1].view(-1).detach().cpu().numpy()
-            output_k_cpu = outputs[k,:,0:1].view(-1).detach().cpu().numpy()
+    mse_i = []
+    huber_i = []
+    dtw_i = []
+    tdi_i = []
 
-            path, sim = dtw_path(target_k_cpu, output_k_cpu)   
-            loss_dtw += sim
-                       
-            Dist = 0
-            for i,j in path:
-                    Dist += (i-j)*(i-j)
-            loss_tdi += Dist / (N_output*N_output)            
-                        
-        loss_dtw = loss_dtw /batch_size
-        loss_tdi = loss_tdi / batch_size
+    delta = 1.0  # Huber parameter
 
-        # print statistics
-        losses_mse.append( loss_mse.item() )
-        losses_dtw.append( loss_dtw )
-        losses_tdi.append( loss_tdi )
+    with torch.no_grad():
+        for inputs, targets, _ in loader:
+            inputs = torch.tensor(inputs, dtype=torch.float32).to(device)
+            targets = torch.tensor(targets, dtype=torch.float32).to(device)
 
-    wandb.log({
-        "eval/mse": np.array(losses_mse).mean(),
-        "eval/dtw": np.array(losses_dtw).mean(),
-        "eval/tdi": np.array(losses_tdi).mean(),
-    })
+            outputs = net(inputs)
 
-    print( ' Eval mse= ', np.array(losses_mse).mean() ,' dtw= ',np.array(losses_dtw).mean() ,' tdi= ', np.array(losses_tdi).mean()) 
+            B, T, _ = targets.shape
+
+            # --- per-sample MSE & Huber ---
+            r = outputs - targets
+            mse_batch = torch.mean(r**2, dim=(1, 2))
+            abs_r = torch.abs(r)
+            huber_batch = torch.mean(
+                torch.where(abs_r <= delta, 0.5 * r**2, delta * (abs_r - 0.5 * delta)),
+                dim=(1, 2)
+            )
+
+            mse_i.extend(mse_batch.cpu().numpy())
+            huber_i.extend(huber_batch.cpu().numpy())
+
+            # --- DTW + TDI ---
+            for k in range(B):
+                y_true = targets[k, :, 0].cpu().numpy()
+                y_pred = outputs[k, :, 0].cpu().numpy()
+
+                path, dtw_val = dtw_path(y_true, y_pred)
+                dtw_i.append(dtw_val)
+
+                tdi = sum((i - j) ** 2 for i, j in path) / (T * T)
+                tdi_i.append(tdi)
+
+    def mean_std(x):
+        return float(np.mean(x)), float(np.std(x))
+
+    return {
+        "MSE": mean_std(mse_i),
+        "Huber": mean_std(huber_i),
+        "DTW": mean_std(dtw_i),
+        "TDI": mean_std(tdi_i),
+    }
 
 
 
@@ -185,6 +190,21 @@ if __name__ == '__main__':
 
     print(f"GRU DILATE training time: {format_time(time_dilate)}")
     print(f"GRU MSE training time:    {format_time(time_mse)}")
+
+    print("\n=== GRU (MSE-trained) test metrics ===")
+    metrics_gru_mse = eval_model(
+        net_gru_mse, testloader, gamma=gamma, device=device
+    )
+    for k, (m, s) in metrics_gru_mse.items():
+        print(f"{k:6s}: {m:.4f} ± {s:.4f}")
+
+    print("\n=== GRU (DILATE-trained) test metrics ===")
+    metrics_gru_dilate = eval_model(
+        net_gru_dilate, testloader, gamma=gamma, device=device
+    )
+    for k, (m, s) in metrics_gru_dilate.items():
+        print(f"{k:6s}: {m:.4f} ± {s:.4f}")
+
     # Visualize results
     gen_test = iter(testloader)
     test_inputs, test_targets, breaks = next(gen_test)
