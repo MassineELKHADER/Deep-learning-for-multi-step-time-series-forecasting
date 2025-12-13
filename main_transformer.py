@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from data.synthetic_dataset import create_synthetic_dataset, SyntheticDataset
-from models.seq2seq import EncoderRNN, DecoderRNN, Net_GRU, Net_Transformer
+from models.transformer import Net_Transformer
 from loss.dilate_loss import dilate_loss
 from torch.utils.data import DataLoader
 import random

@@ -189,10 +189,18 @@ if __name__ == "__main__":
     # -----------------------
 
     n_plots = 5
-    indices = [1, 5, 10, 15, 20] 
+    indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20] 
 
     for idx in indices:
         save_input_pred_gt(Xte, Yte, Ypred, idx, PLOT_DIR)
         save_dtw_alignment(Yte[idx], Ypred[idx], idx, PLOT_DIR)
 
     print(f"\nSaved {n_plots} qualitative Ridge examples to {PLOT_DIR}")
+
+
+# === Ridge multi-output (test metrics) ===
+# MSE    : 0.0607
+# Huber  : 0.0303
+# DTW    : 0.8425
+# TDI    : 2.0752
+# DILATE : 1.4549
