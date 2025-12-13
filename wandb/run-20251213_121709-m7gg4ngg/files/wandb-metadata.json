@@ -1,0 +1,53 @@
+{
+    "os": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.11",
+    "heartbeatAt": "2025-12-13T11:17:11.368533",
+    "startedAt": "2025-12-13T11:17:09.857011",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "C:\\Users\\pcc\\Desktop\\CS_1A\\3A\\MVA\\time_series\\Mini-projet\\DILATE\\main.py",
+    "codePathLocal": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/MassineELKHADER/Deep-learning-for-multi-step-time-series-forecasting.git",
+        "commit": "1fbdde9a47d787a09c768462709748b97247abd8"
+    },
+    "email": "massineelkhader@gmail.com",
+    "root": "C:/Users/pcc/Desktop/CS_1A/3A/MVA/time_series/Mini-projet/DILATE",
+    "host": "DESKTOP-H2U5MKO",
+    "username": "pcc",
+    "executable": "C:\\Users\\pcc\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "cpu_count": 14,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 2400.0,
+        "min": 0.0,
+        "max": 2400.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2400.0,
+            "min": 0.0,
+            "max": 2400.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 930.0247230529785,
+            "used": 708.6247711181641
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+            "memory_total": 6439305216
+        }
+    ],
+    "memory": {
+        "total": 31.67876434326172
+    }
+}

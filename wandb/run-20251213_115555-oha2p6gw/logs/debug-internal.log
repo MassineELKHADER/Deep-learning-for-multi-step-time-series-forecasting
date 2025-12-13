@@ -1,0 +1,517 @@
+2025-12-13 11:55:55,870 INFO    StreamThr :38440 [internal.py:wandb_internal():85] W&B internal server running at pid: 38440, started at: 2025-12-13 11:55:55.869236
+2025-12-13 11:55:55,874 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status
+2025-12-13 11:55:55,879 INFO    WriterThread:38440 [datastore.py:open_for_write():87] open: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\run-oha2p6gw.wandb
+2025-12-13 11:55:55,883 DEBUG   SenderThread:38440 [sender.py:send():379] send: header
+2025-12-13 11:55:55,931 DEBUG   SenderThread:38440 [sender.py:send():379] send: run
+2025-12-13 11:55:56,519 INFO    SenderThread:38440 [dir_watcher.py:__init__():211] watching files in: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files
+2025-12-13 11:55:56,520 INFO    SenderThread:38440 [sender.py:_start_run_threads():1188] run started: oha2p6gw with start time 1765623355.872923
+2025-12-13 11:55:56,529 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: check_version
+2025-12-13 11:55:56,530 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: check_version
+2025-12-13 11:55:56,910 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: run_start
+2025-12-13 11:55:56,943 DEBUG   HandlerThread:38440 [system_info.py:__init__():26] System info init
+2025-12-13 11:55:56,943 DEBUG   HandlerThread:38440 [system_info.py:__init__():41] System info init done
+2025-12-13 11:55:56,945 INFO    HandlerThread:38440 [system_monitor.py:start():194] Starting system monitor
+2025-12-13 11:55:56,945 INFO    SystemMonitor:38440 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2025-12-13 11:55:56,945 INFO    HandlerThread:38440 [system_monitor.py:probe():214] Collecting system info
+2025-12-13 11:55:56,953 INFO    SystemMonitor:38440 [interfaces.py:start():188] Started cpu monitoring
+2025-12-13 11:55:56,953 INFO    SystemMonitor:38440 [interfaces.py:start():188] Started disk monitoring
+2025-12-13 11:55:56,955 INFO    SystemMonitor:38440 [interfaces.py:start():188] Started gpu monitoring
+2025-12-13 11:55:56,955 INFO    SystemMonitor:38440 [interfaces.py:start():188] Started memory monitoring
+2025-12-13 11:55:56,963 INFO    SystemMonitor:38440 [interfaces.py:start():188] Started network monitoring
+2025-12-13 11:55:56,971 DEBUG   HandlerThread:38440 [system_info.py:probe():152] Probing system
+2025-12-13 11:55:56,973 DEBUG   HandlerThread:38440 [system_info.py:_probe_git():137] Probing git
+2025-12-13 11:55:57,054 DEBUG   HandlerThread:38440 [system_info.py:_probe_git():145] Probing git done
+2025-12-13 11:55:57,054 DEBUG   HandlerThread:38440 [system_info.py:probe():200] Probing system done
+2025-12-13 11:55:57,054 DEBUG   HandlerThread:38440 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.26200-SP0', 'python': '3.10.11', 'heartbeatAt': '2025-12-13T10:55:56.971294', 'startedAt': '2025-12-13T10:55:55.851744', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'C:\\Users\\pcc\\Desktop\\CS_1A\\3A\\MVA\\time_series\\Mini-projet\\DILATE\\main.py', 'codePathLocal': 'main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/MassineELKHADER/Deep-learning-for-multi-step-time-series-forecasting.git', 'commit': '1fbdde9a47d787a09c768462709748b97247abd8'}, 'email': 'massineelkhader@gmail.com', 'root': 'C:/Users/pcc/Desktop/CS_1A/3A/MVA/time_series/Mini-projet/DILATE', 'host': 'DESKTOP-H2U5MKO', 'username': 'pcc', 'executable': 'C:\\Users\\pcc\\AppData\\Local\\Programs\\Python\\Python310\\python.exe', 'cpu_count': 14, 'cpu_count_logical': 20, 'cpu_freq': {'current': 2400.0, 'min': 0.0, 'max': 2400.0}, 'cpu_freq_per_core': [{'current': 2400.0, 'min': 0.0, 'max': 2400.0}], 'disk': {'/': {'total': 930.0247230529785, 'used': 708.2684516906738}}, 'gpu': 'NVIDIA GeForce RTX 4050 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4050 Laptop GPU', 'memory_total': 6439305216}], 'memory': {'total': 31.67876434326172}}
+2025-12-13 11:55:57,054 INFO    HandlerThread:38440 [system_monitor.py:probe():224] Finished collecting system info
+2025-12-13 11:55:57,054 INFO    HandlerThread:38440 [system_monitor.py:probe():227] Publishing system info
+2025-12-13 11:55:57,058 INFO    HandlerThread:38440 [system_monitor.py:probe():229] Finished publishing system info
+2025-12-13 11:55:57,058 DEBUG   SenderThread:38440 [sender.py:send():379] send: files
+2025-12-13 11:55:57,058 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-metadata.json with policy now
+2025-12-13 11:55:57,535 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-metadata.json
+2025-12-13 11:55:57,910 INFO    wandb-upload_0:38440 [upload_job.py:push():130] Uploaded file C:\Users\pcc\AppData\Local\Temp\tmp_yuk4vzhwandb\gycx31xe-wandb-metadata.json
+2025-12-13 11:56:01,107 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:06,131 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:11,147 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:16,174 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:17,208 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: python_packages
+2025-12-13 11:56:17,208 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: python_packages
+2025-12-13 11:56:17,208 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:56:17,208 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:56:17,208 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:17,400 DEBUG   SenderThread:38440 [sender.py:send():379] send: telemetry
+2025-12-13 11:56:17,400 DEBUG   SenderThread:38440 [sender.py:send():379] send: telemetry
+2025-12-13 11:56:17,400 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:17,400 WARNING SenderThread:38440 [sender.py:send_metric():1405] Seen metric with glob (shouldn't happen)
+2025-12-13 11:56:17,637 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\requirements.txt
+2025-12-13 11:56:17,637 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log
+2025-12-13 11:56:18,235 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:19,240 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:19,655 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log
+2025-12-13 11:56:20,246 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:21,260 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:21,433 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:22,264 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:23,274 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:24,285 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:25,299 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:26,302 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:27,250 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:27,311 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:27,718 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\config.yaml
+2025-12-13 11:56:28,141 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:28,141 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:28,141 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:28,317 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:28,721 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:29,325 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:29,736 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log
+2025-12-13 11:56:30,335 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:30,478 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:30,478 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:30,478 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:30,478 DEBUG   SenderThread:38440 [sender.py:send():379] send: metric
+2025-12-13 11:56:30,478 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:30,485 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:30,485 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:30,747 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:31,341 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:31,762 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log
+2025-12-13 11:56:31,951 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:31,951 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:31,951 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:31,951 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:32,233 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:56:32,233 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:56:32,343 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:32,514 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:32,767 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:33,348 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:33,353 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:33,353 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:33,353 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:33,355 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:33,771 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:34,352 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:34,800 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:34,801 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:34,801 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:34,802 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:35,355 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:35,780 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:36,139 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:36,139 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:36,139 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:36,142 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:36,371 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:36,781 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:37,374 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:37,586 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:37,588 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:37,588 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:37,588 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:37,588 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:37,792 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:38,390 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:39,145 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:39,145 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:39,145 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:39,155 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:39,406 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:39,798 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:40,407 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:41,410 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:42,417 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:42,828 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:42,828 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:42,828 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:42,828 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:42,828 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:43,430 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:43,840 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:44,443 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:45,456 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:46,470 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:46,972 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:46,972 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:46,972 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:46,972 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:47,242 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:56:47,242 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:56:47,479 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:47,890 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:48,493 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:48,493 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:49,504 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:50,516 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:51,417 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:51,429 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:51,429 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:51,449 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:51,529 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:51,924 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:52,539 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:53,553 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:54,328 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:54,565 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:55,576 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:56,084 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:56:56,084 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:56:56,084 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:56:56,084 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:56:56,591 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:56,971 DEBUG   SystemMonitor:38440 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2025-12-13 11:56:56,971 DEBUG   SenderThread:38440 [sender.py:send():379] send: stats
+2025-12-13 11:56:56,987 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:56:57,605 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:58,606 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:56:59,338 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:56:59,616 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:00,058 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\config.yaml
+2025-12-13 11:57:00,627 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:00,754 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:00,754 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:00,754 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:00,754 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:01,068 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:01,636 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:02,254 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:57:02,254 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:57:02,651 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:03,664 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:04,677 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:05,514 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:05,514 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:05,514 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:05,514 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:05,530 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:05,689 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:06,131 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:06,700 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:07,712 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:08,720 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:09,722 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:10,307 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:10,307 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:10,307 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:10,322 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:10,733 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:11,224 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:11,335 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:11,747 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:12,758 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:13,769 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:14,545 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:14,545 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:14,545 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:14,558 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:14,782 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:15,320 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:15,787 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:16,572 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:16,796 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:17,267 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:57:17,267 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:57:17,806 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:18,437 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:18,437 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:18,437 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:18,437 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:18,816 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:19,413 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:19,831 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:20,838 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:21,849 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:22,370 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:22,576 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:22,576 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:22,576 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:22,592 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:22,876 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:23,510 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:23,891 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:24,906 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:25,899 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:26,489 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:26,489 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:26,489 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:26,489 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:26,585 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:26,916 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:26,979 DEBUG   SenderThread:38440 [sender.py:send():379] send: stats
+2025-12-13 11:57:27,374 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:27,930 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:28,945 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:29,964 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:30,488 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:30,488 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:30,488 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:30,504 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:30,693 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:30,963 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:31,992 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:32,277 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:57:32,277 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:57:32,538 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:32,988 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:34,018 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:34,558 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:34,574 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:34,574 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:34,574 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:34,764 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:35,018 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:36,047 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:37,042 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:38,075 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:38,410 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:38,450 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:38,452 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:38,452 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:38,454 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:38,851 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:39,073 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:40,105 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:41,102 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:42,133 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:42,400 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:42,400 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:42,400 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:42,400 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:42,939 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:43,128 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:43,428 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:44,153 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:44,437 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:44,437 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:44,437 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:44,437 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:44,963 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:45,160 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:45,611 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:45,611 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:45,611 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:45,611 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:45,975 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:46,179 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:46,886 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:46,886 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:46,887 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:46,887 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:46,990 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:47,173 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:47,287 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: stop_status
+2025-12-13 11:57:47,288 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: stop_status
+2025-12-13 11:57:48,056 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:48,056 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:48,056 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:48,056 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:48,174 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:49,012 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:49,060 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:49,177 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:49,315 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:49,316 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:49,316 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:49,317 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:50,023 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:50,193 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:50,503 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:50,504 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:50,504 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:50,505 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:51,027 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:51,198 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:51,688 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:51,688 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:51,688 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:51,688 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:52,043 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:52,201 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:53,215 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:53,229 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:53,230 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:53,230 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:53,232 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:54,063 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:54,216 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:54,245 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:54,850 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:54,862 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:54,862 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:54,862 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:55,075 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:55,230 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:56,236 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:56,502 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:56,502 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:56,502 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:56,502 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:56,992 DEBUG   SenderThread:38440 [sender.py:send():379] send: stats
+2025-12-13 11:57:57,094 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:57,244 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:58,044 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:58,046 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:58,046 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:58,047 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:57:58,095 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:57:58,253 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:59,268 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:57:59,875 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: partial_history
+2025-12-13 11:57:59,877 DEBUG   SenderThread:38440 [sender.py:send():379] send: history
+2025-12-13 11:57:59,877 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: summary_record
+2025-12-13 11:57:59,877 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:57:59,877 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:58:00,147 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:58:00,272 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:58:01,061 DEBUG   SenderThread:38440 [sender.py:send():379] send: exit
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:send_exit():586] handling exit code: 255
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:send_exit():588] handling runtime: 124
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:send_exit():594] send defer
+2025-12-13 11:58:01,061 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,061 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 0
+2025-12-13 11:58:01,061 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 0
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 1
+2025-12-13 11:58:01,061 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,061 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 1
+2025-12-13 11:58:01,061 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 1
+2025-12-13 11:58:01,061 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 2
+2025-12-13 11:58:01,061 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,061 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 2
+2025-12-13 11:58:01,061 INFO    HandlerThread:38440 [system_monitor.py:finish():203] Stopping system monitor
+2025-12-13 11:58:01,061 DEBUG   SystemMonitor:38440 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2025-12-13 11:58:01,082 INFO    HandlerThread:38440 [interfaces.py:finish():200] Joined cpu monitor
+2025-12-13 11:58:01,082 DEBUG   SystemMonitor:38440 [system_monitor.py:_start():183] Publishing last batch of metrics
+2025-12-13 11:58:01,082 INFO    HandlerThread:38440 [interfaces.py:finish():200] Joined disk monitor
+2025-12-13 11:58:01,178 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:58:01,180 INFO    HandlerThread:38440 [interfaces.py:finish():200] Joined gpu monitor
+2025-12-13 11:58:01,180 INFO    HandlerThread:38440 [interfaces.py:finish():200] Joined memory monitor
+2025-12-13 11:58:01,180 INFO    HandlerThread:38440 [interfaces.py:finish():200] Joined network monitor
+2025-12-13 11:58:01,182 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,182 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 2
+2025-12-13 11:58:01,182 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 3
+2025-12-13 11:58:01,182 DEBUG   SenderThread:38440 [sender.py:send():379] send: stats
+2025-12-13 11:58:01,183 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,183 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 3
+2025-12-13 11:58:01,183 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,183 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 3
+2025-12-13 11:58:01,183 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 4
+2025-12-13 11:58:01,185 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,185 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 4
+2025-12-13 11:58:01,185 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,185 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 4
+2025-12-13 11:58:01,185 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 5
+2025-12-13 11:58:01,186 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,186 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 5
+2025-12-13 11:58:01,186 DEBUG   SenderThread:38440 [sender.py:send():379] send: summary
+2025-12-13 11:58:01,186 INFO    SenderThread:38440 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2025-12-13 11:58:01,188 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,188 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 5
+2025-12-13 11:58:01,188 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 6
+2025-12-13 11:58:01,188 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,188 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 6
+2025-12-13 11:58:01,189 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,189 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 6
+2025-12-13 11:58:01,189 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 7
+2025-12-13 11:58:01,189 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:58:01,190 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:01,190 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 7
+2025-12-13 11:58:01,190 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:01,190 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 7
+2025-12-13 11:58:02,070 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: poll_exit
+2025-12-13 11:58:02,181 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:58:03,047 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 8
+2025-12-13 11:58:03,047 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: poll_exit
+2025-12-13 11:58:03,047 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:03,047 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 8
+2025-12-13 11:58:03,049 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:03,049 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 8
+2025-12-13 11:58:03,049 INFO    SenderThread:38440 [job_builder.py:build():440] Attempting to build job artifact
+2025-12-13 11:58:03,049 INFO    SenderThread:38440 [job_builder.py:_get_source_type():569] is repo sourced job
+2025-12-13 11:58:03,077 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: poll_exit
+2025-12-13 11:58:03,149 INFO    SenderThread:38440 [job_builder.py:build():545] adding wandb-job metadata file
+2025-12-13 11:58:03,182 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 9
+2025-12-13 11:58:03,184 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: poll_exit
+2025-12-13 11:58:03,184 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:03,184 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 9
+2025-12-13 11:58:03,184 DEBUG   SenderThread:38440 [sender.py:send():379] send: artifact
+2025-12-13 11:58:03,188 INFO    Thread-16 :38440 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log
+2025-12-13 11:58:04,097 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: poll_exit
+2025-12-13 11:58:04,771 INFO    wandb-upload_1:38440 [upload_job.py:push():88] Uploaded file C:\Users\pcc\AppData\Local\Temp\tmpewmn82db\wandb-job.json
+2025-12-13 11:58:04,907 INFO    wandb-upload_0:38440 [upload_job.py:push():88] Uploaded file C:\Users\pcc\AppData\Local\wandb\wandb\artifacts\staging\tmppazjxv3y
+2025-12-13 11:58:06,249 INFO    SenderThread:38440 [sender.py:send_artifact():1530] sent artifact job-https___github.com_MassineELKHADER_Deep-learning-for-multi-step-time-series-forecasting.git_main.py - {'id': 'QXJ0aWZhY3Q6MjMxNzkxNDE0OQ==', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjgxMDE0OTYzMA==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6MjMxMTA0MjQ5MQ==', 'versionIndex': 6}}}
+2025-12-13 11:58:06,249 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:06,257 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 9
+2025-12-13 11:58:06,257 INFO    SenderThread:38440 [dir_watcher.py:finish():358] shutting down directory watcher
+2025-12-13 11:58:06,257 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: status_report
+2025-12-13 11:58:07,225 INFO    SenderThread:38440 [dir_watcher.py:finish():388] scan: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files
+2025-12-13 11:58:07,225 INFO    SenderThread:38440 [dir_watcher.py:finish():402] scan save: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\config.yaml config.yaml
+2025-12-13 11:58:07,225 INFO    SenderThread:38440 [dir_watcher.py:finish():402] scan save: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log output.log
+2025-12-13 11:58:07,225 INFO    SenderThread:38440 [dir_watcher.py:finish():402] scan save: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\requirements.txt requirements.txt
+2025-12-13 11:58:07,225 INFO    SenderThread:38440 [dir_watcher.py:finish():402] scan save: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-metadata.json wandb-metadata.json
+2025-12-13 11:58:07,234 INFO    SenderThread:38440 [dir_watcher.py:finish():402] scan save: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json wandb-summary.json
+2025-12-13 11:58:07,234 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 10
+2025-12-13 11:58:07,240 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: poll_exit
+2025-12-13 11:58:07,240 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:07,240 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 10
+2025-12-13 11:58:07,240 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:07,240 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 10
+2025-12-13 11:58:07,240 INFO    SenderThread:38440 [file_pusher.py:finish():169] shutting down file pusher
+2025-12-13 11:58:07,711 INFO    wandb-upload_1:38440 [upload_job.py:push():130] Uploaded file C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\config.yaml
+2025-12-13 11:58:07,860 INFO    wandb-upload_2:38440 [upload_job.py:push():130] Uploaded file C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\requirements.txt
+2025-12-13 11:58:07,935 INFO    wandb-upload_0:38440 [upload_job.py:push():130] Uploaded file C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\output.log
+2025-12-13 11:58:07,935 INFO    wandb-upload_3:38440 [upload_job.py:push():130] Uploaded file C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\files\wandb-summary.json
+2025-12-13 11:58:08,109 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: poll_exit
+2025-12-13 11:58:08,109 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: poll_exit
+2025-12-13 11:58:08,143 INFO    Thread-15 (_thread_body):38440 [sender.py:transition_state():614] send defer: 11
+2025-12-13 11:58:08,143 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:08,143 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 11
+2025-12-13 11:58:08,143 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:08,143 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 11
+2025-12-13 11:58:08,143 INFO    SenderThread:38440 [file_pusher.py:join():175] waiting for file pusher
+2025-12-13 11:58:08,143 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 12
+2025-12-13 11:58:08,143 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:08,148 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 12
+2025-12-13 11:58:08,148 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:08,148 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 12
+2025-12-13 11:58:08,148 INFO    SenderThread:38440 [file_stream.py:finish():601] file stream finish called
+2025-12-13 11:58:08,348 INFO    SenderThread:38440 [file_stream.py:finish():605] file stream finish is done
+2025-12-13 11:58:08,348 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 13
+2025-12-13 11:58:08,348 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:08,349 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 13
+2025-12-13 11:58:08,349 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:08,349 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 13
+2025-12-13 11:58:08,349 INFO    SenderThread:38440 [sender.py:transition_state():614] send defer: 14
+2025-12-13 11:58:08,349 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: defer
+2025-12-13 11:58:08,350 INFO    HandlerThread:38440 [handler.py:handle_request_defer():184] handle defer: 14
+2025-12-13 11:58:08,350 DEBUG   SenderThread:38440 [sender.py:send():379] send: final
+2025-12-13 11:58:08,351 DEBUG   SenderThread:38440 [sender.py:send():379] send: footer
+2025-12-13 11:58:08,351 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: defer
+2025-12-13 11:58:08,351 INFO    SenderThread:38440 [sender.py:send_request_defer():610] handle sender defer: 14
+2025-12-13 11:58:08,351 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: poll_exit
+2025-12-13 11:58:08,353 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: poll_exit
+2025-12-13 11:58:08,353 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: server_info
+2025-12-13 11:58:08,354 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: poll_exit
+2025-12-13 11:58:08,354 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: get_summary
+2025-12-13 11:58:08,355 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: sampled_history
+2025-12-13 11:58:08,356 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: server_info
+2025-12-13 11:58:08,357 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: internal_messages
+2025-12-13 11:58:08,526 DEBUG   SenderThread:38440 [sender.py:send_request():406] send_request: poll_exit
+2025-12-13 11:58:08,527 INFO    MainThread:38440 [wandb_run.py:_footer_history_summary_info():3991] rendering history
+2025-12-13 11:58:08,527 INFO    MainThread:38440 [wandb_run.py:_footer_history_summary_info():4023] rendering summary
+2025-12-13 11:58:08,527 INFO    MainThread:38440 [wandb_run.py:_footer_sync_info():3950] logging synced files
+2025-12-13 11:58:08,528 DEBUG   HandlerThread:38440 [handler.py:handle_request():158] handle_request: shutdown
+2025-12-13 11:58:08,528 INFO    HandlerThread:38440 [handler.py:finish():882] shutting down handler
+2025-12-13 11:58:09,358 INFO    WriterThread:38440 [datastore.py:close():296] close: C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251213_115555-oha2p6gw\run-oha2p6gw.wandb
+2025-12-13 11:58:09,527 INFO    SenderThread:38440 [sender.py:finish():1608] shutting down sender
+2025-12-13 11:58:09,527 INFO    SenderThread:38440 [file_pusher.py:finish():169] shutting down file pusher
+2025-12-13 11:58:09,527 INFO    SenderThread:38440 [file_pusher.py:join():175] waiting for file pusher
