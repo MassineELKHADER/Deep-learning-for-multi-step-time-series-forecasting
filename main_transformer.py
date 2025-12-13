@@ -31,7 +31,7 @@ N_input = 20
 N_output = 20  
 sigma = 0.01
 gamma = 0.01
-epochs = 5
+# epochs = 5
 epochs = 500
 
 def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
@@ -81,7 +81,7 @@ def train_model(net,loss_type, learning_rate, epochs=1000, gamma = 0.001,
             
         if(verbose):
             if (epoch % print_every == 0) or (epoch==epochs-1):
-                print('epoch ', epoch, ' loss ',loss.item(),' loss shape ',loss_shape.item(),' loss temporal ',loss_temporal.item())
+                print('epoch ', epoch+1, ' loss ',loss.item(),' loss shape ',loss_shape.item(),' loss temporal ',loss_temporal.item())
                 eval_model(net,testloader, gamma,verbose=1)
         
         
@@ -131,12 +131,15 @@ def eval_model(net,loader, gamma,verbose=1):
     def mean_std(x):
         return float(np.mean(x)), float(np.std(x))
 
-    return {
+    results = {
         "MSE": mean_std(mse_i),
         "Huber": mean_std(huber_i),
         "DTW": mean_std(dtw_i),
         "TDI": mean_std(tdi_i),
     }
+    net.train()
+    return results
+
 
 
 if __name__ == '__main__':
@@ -177,14 +180,14 @@ if __name__ == '__main__':
 
     print("\n=== Transformer (MSE-trained) test metrics ===")
     metrics_trans_mse = eval_model(
-        net_trans_mse, testloader, gamma=gamma, device=device
+        net_trans_mse, testloader, gamma=gamma
     )
     for k, (m, s) in metrics_trans_mse.items():
         print(f"{k:6s}: {m:.4f} ± {s:.4f}")
 
     print("\n=== Transformer (DILATE-trained) test metrics ===")
     metrics_trans_dilate = eval_model(
-        net_trans_dilate, testloader, gamma=gamma, device=device
+        net_trans_dilate, testloader, gamma=gamma
     )
     for k, (m, s) in metrics_trans_dilate.items():
         print(f"{k:6s}: {m:.4f} ± {s:.4f}")

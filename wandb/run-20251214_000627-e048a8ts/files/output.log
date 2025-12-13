@@ -1,0 +1,27 @@
+
+Training GRU with DILATE loss...
+epoch  0  loss  1.5594626665115356  loss shape  2.995619535446167  loss temporal  0.1233057975769043
+Traceback (most recent call last):
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main.py", line 175, in <module>
+    time_dilate = train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=print_every, eval_every=50,verbose=1)
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main.py", line 65, in train_model
+    loss.backward()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: cudnn RNN backward can only be called in training mode
+Traceback (most recent call last):
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main.py", line 175, in <module>
+    time_dilate = train_model(net_gru_dilate,loss_type='dilate',learning_rate=0.001, epochs=epochs, gamma=gamma, print_every=print_every, eval_every=50,verbose=1)
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main.py", line 65, in train_model
+    loss.backward()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: cudnn RNN backward can only be called in training mode

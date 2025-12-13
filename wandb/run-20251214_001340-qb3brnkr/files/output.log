@@ -1,0 +1,19 @@
+
+Training Transformer with DILATE loss...
+epoch  0  loss  5.324533939361572  loss shape  9.766353607177734  loss temporal  0.8827145099639893
+epoch  4  loss  2.029141902923584  loss shape  2.0988948345184326  loss temporal  1.9593889713287354
+Saved weights to: weights/transformer\net_trans_dilate_5.pth
+Training Transformer with MSE loss...
+epoch  0  loss  0.6984792947769165  loss shape  0  loss temporal  0
+epoch  4  loss  0.13201865553855896  loss shape  0  loss temporal  0
+Saved weights to: weights/transformer\net_trans_mse_5.pth
+=== Transformer (MSE-trained) test metrics ===
+MSE   : 0.1163 ± 0.1542
+Huber : 0.0582 ± 0.0771
+DTW   : 1.2014 ± 0.9141
+TDI   : 1.5834 ± 2.6022
+=== Transformer (DILATE-trained) test metrics ===
+MSE   : 0.1420 ± 0.1781
+Huber : 0.0710 ± 0.0890
+DTW   : 1.3777 ± 0.9458
+TDI   : 1.1344 ± 1.9509

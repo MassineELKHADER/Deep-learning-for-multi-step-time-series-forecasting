@@ -1,0 +1,21 @@
+
+Training GRU with DILATE loss...
+epoch  0  loss  1.3451857566833496  loss shape  2.403163194656372  loss temporal  0.2872084081172943
+epoch  4  loss  1.3348814249038696  loss shape  2.386084794998169  loss temporal  0.28367796540260315
+Saved weights: weights/gru\gru_dilate_5.pth
+Training GRU with MSE loss...
+epoch  0  loss  0.1119827851653099  loss shape  0  loss temporal  0
+epoch  4  loss  0.11960262060165405  loss shape  0  loss temporal  0
+Saved weights: weights/gru\gru_mse_5.pth
+GRU DILATE training time: 0h 0m 13s
+GRU MSE training time:    0h 0m 1s
+=== GRU (MSE-trained) test metrics ===
+MSE   : 0.1414 ± 0.1790
+Huber : 0.0707 ± 0.0895
+DTW   : 1.3605 ± 0.9882
+TDI   : 0.2331 ± 0.9340
+=== GRU (DILATE-trained) test metrics ===
+MSE   : 0.1483 ± 0.1888
+Huber : 0.0741 ± 0.0944
+DTW   : 1.4012 ± 0.9960
+TDI   : 0.3249 ± 0.9960

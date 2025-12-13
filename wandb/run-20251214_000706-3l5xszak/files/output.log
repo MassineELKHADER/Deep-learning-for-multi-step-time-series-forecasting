@@ -1,0 +1,27 @@
+
+Training Transformer with DILATE loss...
+epoch  0  loss  4.229612827301025  loss shape  7.455193519592285  loss temporal  1.0040324926376343
+epoch  50  loss  0.42782074213027954  loss shape  0.4309042692184448  loss temporal  0.42473724484443665
+epoch  100  loss  0.33243149518966675  loss shape  0.33786121010780334  loss temporal  0.32700178027153015
+Traceback (most recent call last):
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 166, in <module>
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 62, in train_model
+    loss.backward()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 166, in <module>
+  File "C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\main_transformer.py", line 62, in train_model
+    loss.backward()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

@@ -1,0 +1,47 @@
+2025-12-14 00:05:49,452 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Current SDK version is 0.17.3
+2025-12-14 00:05:49,453 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Configure stats pid to 56472
+2025-12-14 00:05:49,453 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Loading settings from C:\Users\pcc\.config\wandb\settings
+2025-12-14 00:05:49,453 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Loading settings from C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\settings
+2025-12-14 00:05:49,453 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2025-12-14 00:05:49,453 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2025-12-14 00:05:49,455 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': 'C:\\Users\\pcc\\Desktop\\CS_1A\\3A\\MVA\\time_series\\Mini-projet\\DILATE\\main.py', 'program': 'C:\\Users\\pcc\\Desktop\\CS_1A\\3A\\MVA\\time_series\\Mini-projet\\DILATE\\main.py'}
+2025-12-14 00:05:49,455 INFO    MainThread:56472 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-12-14 00:05:49,455 INFO    MainThread:56472 [wandb_init.py:_log_setup():520] Logging user logs to C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251214_000549-b2q92a6a\logs\debug.log
+2025-12-14 00:05:49,456 INFO    MainThread:56472 [wandb_init.py:_log_setup():521] Logging internal logs to C:\Users\pcc\Desktop\CS_1A\3A\MVA\time_series\Mini-projet\DILATE\wandb\run-20251214_000549-b2q92a6a\logs\debug-internal.log
+2025-12-14 00:05:49,456 INFO    MainThread:56472 [wandb_init.py:init():560] calling init triggers
+2025-12-14 00:05:49,456 INFO    MainThread:56472 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {'batch_size': 100, 'N_input': 20, 'N_output': 20, 'gamma': 0.01, 'epochs': 500}
+2025-12-14 00:05:49,456 INFO    MainThread:56472 [wandb_init.py:init():610] starting backend
+2025-12-14 00:05:49,456 INFO    MainThread:56472 [wandb_init.py:init():614] setting up manager
+2025-12-14 00:05:49,458 INFO    MainThread:56472 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn, using: spawn
+2025-12-14 00:05:49,458 INFO    MainThread:56472 [wandb_init.py:init():622] backend started and connected
+2025-12-14 00:05:49,468 INFO    MainThread:56472 [wandb_init.py:init():711] updated telemetry
+2025-12-14 00:05:49,528 INFO    MainThread:56472 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2025-12-14 00:05:50,230 INFO    MainThread:56472 [wandb_run.py:_on_init():2402] communicating current version
+2025-12-14 00:05:50,718 INFO    MainThread:56472 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.23.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2025-12-14 00:05:50,718 INFO    MainThread:56472 [wandb_init.py:init():795] starting run threads in backend
+2025-12-14 00:06:04,311 WARNING MainThread:56472 [wandb_init.py:init():1175] interrupted
+Traceback (most recent call last):
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\wandb\sdk\wandb_init.py", line 1171, in init
+    return wi.init()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\wandb\sdk\wandb_init.py", line 837, in init
+    run._on_start()
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\wandb\sdk\wandb_run.py", line 2434, in _on_start
+    self._backend.interface.publish_python_packages(working_set())
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\wandb\sdk\interface\interface.py", line 295, in publish_python_packages
+    for pkg in working_set:
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\site-packages\wandb\util.py", line 1869, in working_set
+    yield InstalledDistribution(key=d.metadata["Name"], version=d.version)
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\importlib\metadata\__init__.py", line 605, in metadata
+    self.read_text('METADATA')
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\importlib\metadata\__init__.py", line 927, in read_text
+    return self._path.joinpath(filename).read_text(encoding='utf-8')
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+  File "C:\Users\pcc\AppData\Local\Programs\Python\Python310\lib\codecs.py", line 309, in __init__
+    def __init__(self, errors='strict'):
+KeyboardInterrupt
+2025-12-14 00:06:08,479 WARNING MsgRouterThr:56472 [router.py:message_loop():77] message_loop has been closed
