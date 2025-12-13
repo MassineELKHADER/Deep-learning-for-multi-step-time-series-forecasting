@@ -41,7 +41,8 @@ def plot_sensitivity(
     save_path,
     title,
     x_label,
-    log_x=False
+    log_x=False,
+    Omega = False
 ):
     with open(results_path, "rb") as f:
         results = pickle.load(f)
@@ -59,7 +60,9 @@ def plot_sensitivity(
 
     if log_x:
         plt.xscale("log")
-
+    if Omega:
+        omega_labels = ["l2", "l1", "asymmetric", "huber"]
+        plt.xticks(range(len(omega_labels)), omega_labels)
     plt.xlabel(x_label)
     plt.ylabel("Metric value")
     plt.title(title)

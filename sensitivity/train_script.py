@@ -1,5 +1,5 @@
 import torch
-from loss.dilate_loss import dilate_loss
+from loss.flexible_dilate_loss import flexible_dilate_loss
 from tqdm import tqdm
 def train_model(
     trainloader,
@@ -9,6 +9,7 @@ def train_model(
     learning_rate,
     alpha,
     gamma,
+    Omega=None,
     epochs=150,
 ):
     optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
@@ -30,11 +31,12 @@ def train_model(
             targets = targets.float().to(device)
 
             outputs = net(inputs)
+            print(outputs.shape, targets.shape)
             if (loss_type=='mse'):
                 criterion = torch.nn.MSELoss()
                 loss = criterion(outputs, targets)
             if (loss_type=='dilate'):
-                loss, _, _ = dilate_loss(outputs=outputs, targets=targets, alpha=alpha, gamma=gamma,device=device
+                loss, _, _ = flexible_dilate_loss(outputs=outputs, targets=targets, alpha=alpha, gamma=gamma,device=device, Omega=Omega
                 )
 
             optimizer.zero_grad()
