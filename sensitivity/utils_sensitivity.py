@@ -30,9 +30,14 @@ def evaluate_metrics(net, loader, device):
                 tdi_list.append(tdi)
 
     return {
-        "mse": np.mean(mse_list),
-        "dtw": np.mean(dtw_list),
-        "tdi": np.mean(tdi_list)
+        "mse_mean": np.mean(mse_list),
+        "mse_std":  np.std(mse_list),
+
+        "dtw_mean": np.mean(dtw_list),
+        "dtw_std":  np.std(dtw_list),
+
+        "tdi_mean": np.mean(tdi_list),
+        "tdi_std":  np.std(tdi_list),
     }
 
 def plot_sensitivity(
@@ -42,27 +47,35 @@ def plot_sensitivity(
     title,
     x_label,
     log_x=False,
-    Omega = False
+    Omega=False
 ):
     with open(results_path, "rb") as f:
         results = pickle.load(f)
 
     x = [r[x_key] for r in results]
-    mse = [r["mse"] for r in results]
-    dtw = [r["dtw"] for r in results]
-    tdi = [r["tdi"] for r in results]
+
+    mse_mean = [r["mse_mean"] for r in results]
+    mse_std  = [r["mse_std"]  for r in results]
+
+    dtw_mean = [r["dtw_mean"] for r in results]
+    dtw_std  = [r["dtw_std"]  for r in results]
+
+    tdi_mean = [r["tdi_mean"] for r in results]
+    tdi_std  = [r["tdi_std"]  for r in results]
 
     plt.figure(figsize=(8, 5))
 
-    plt.plot(x, mse, marker="o", label="MSE")
-    plt.plot(x, dtw, marker="s", label="DTW")
-    plt.plot(x, tdi, marker="^", label="TDI")
+    plt.errorbar(x, mse_mean, yerr=mse_std, marker="o", capsize=3, label="MSE")
+    plt.errorbar(x, dtw_mean, yerr=dtw_std, marker="s", capsize=3, label="DTW")
+    plt.errorbar(x, tdi_mean, yerr=tdi_std, marker="^", capsize=3, label="TDI")
 
     if log_x:
         plt.xscale("log")
+
     if Omega:
         omega_labels = ["l2", "l1", "asymmetric", "huber"]
         plt.xticks(range(len(omega_labels)), omega_labels)
+
     plt.xlabel(x_label)
     plt.ylabel("Metric value")
     plt.title(title)
