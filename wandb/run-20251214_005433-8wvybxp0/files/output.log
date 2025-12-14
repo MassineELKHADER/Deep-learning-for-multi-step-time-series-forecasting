@@ -1,0 +1,37 @@
+
+Training Transformer with DILATE loss...
+epoch  1  loss  3.36659574508667  loss shape  5.619480609893799  loss temporal  1.113710880279541
+epoch  51  loss  1.262864112854004  loss shape  1.3378651142120361  loss temporal  1.1878632307052612
+epoch  101  loss  0.7216364145278931  loss shape  0.6880864500999451  loss temporal  0.7551864385604858
+epoch  151  loss  0.5294885635375977  loss shape  0.5271679759025574  loss temporal  0.5318091511726379
+epoch  201  loss  0.3982508182525635  loss shape  0.11108379065990448  loss temporal  0.6854178309440613
+epoch  251  loss  0.24371057748794556  loss shape  -0.063747838139534  loss temporal  0.5511689782142639
+epoch  301  loss  0.5986804962158203  loss shape  0.6407923698425293  loss temporal  0.5565686821937561
+epoch  351  loss  0.4690600037574768  loss shape  0.47381728887557983  loss temporal  0.46430274844169617
+epoch  401  loss  1.0179539918899536  loss shape  1.3770034313201904  loss temporal  0.6589046120643616
+epoch  451  loss  0.8498746752738953  loss shape  1.171958565711975  loss temporal  0.5277907848358154
+epoch  500  loss  0.7290469408035278  loss shape  0.7544788122177124  loss temporal  0.7036150097846985
+Saved weights to: weights/transformer\net_trans_dilate_500.pth
+Training Transformer with MSE loss...
+epoch  1  loss  0.2076219916343689  loss shape  0  loss temporal  0
+epoch  51  loss  0.029544584453105927  loss shape  0  loss temporal  0
+epoch  101  loss  0.020637834444642067  loss shape  0  loss temporal  0
+epoch  151  loss  0.01870630495250225  loss shape  0  loss temporal  0
+epoch  201  loss  0.017786672338843346  loss shape  0  loss temporal  0
+epoch  251  loss  0.008695784024894238  loss shape  0  loss temporal  0
+epoch  301  loss  0.016193971037864685  loss shape  0  loss temporal  0
+epoch  351  loss  0.009323813021183014  loss shape  0  loss temporal  0
+epoch  401  loss  0.012920421548187733  loss shape  0  loss temporal  0
+epoch  451  loss  0.009257844649255276  loss shape  0  loss temporal  0
+epoch  500  loss  0.011903871782124043  loss shape  0  loss temporal  0
+Saved weights to: weights/transformer\net_trans_mse_500.pth
+=== Transformer (MSE-trained) test metrics ===
+MSE   : 0.0234 ± 0.0765
+Huber : 0.0117 ± 0.0382
+DTW   : 0.3036 ± 0.4390
+TDI   : 1.6097 ± 2.0513
+=== Transformer (DILATE-trained) test metrics ===
+MSE   : 0.0524 ± 0.0961
+Huber : 0.0262 ± 0.0480
+DTW   : 0.7355 ± 0.5928
+TDI   : 0.8334 ± 1.3975
